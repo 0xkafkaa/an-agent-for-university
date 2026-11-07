@@ -1,0 +1,1120 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="__CSRF__" />
+    <meta name="theme-color" content="#171d2d" />
+    <title>Campus — your academic space</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/fonts/manrope.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/chat.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <aside class="sidebar" aria-label="Workspace sidebar">
+      <a class="brand" href="#dashboard" aria-label="Campus home"
+        ><span class="brand-symbol" aria-hidden="true"
+          ><i></i><i></i><i></i><i></i></span
+        ><span>campus<span class="brand-dot">.</span></span></a
+      >
+      <div class="workspace-picker">
+        <span class="workspace-avatar">E</span>
+        <div>
+          <strong>My academic space</strong><small>EPITA · Master's</small>
+        </div>
+        <span class="workspace-chevron" data-icon="lock"></span>
+      </div>
+      <p class="nav-label">WORKSPACE</p>
+      <nav aria-label="Main">
+        <button data-page="dashboard" aria-current="page">
+          <span data-icon="grid"></span><span>Dashboard</span><kbd>⌥1</kbd>
+        </button>
+        <button data-page="calendar">
+          <span data-icon="calendar"></span><span>Calendar</span><kbd>⌥2</kbd>
+        </button>
+        <button data-page="assignments">
+          <span data-icon="check"></span><span>Assignments</span><kbd>⌥3</kbd>
+        </button>
+        <button data-page="exams">
+          <span data-icon="cap"></span><span>Exams</span><kbd>⌥4</kbd>
+        </button>
+        <button data-page="assistant">
+          <span data-icon="sparkles"></span><span>AI Assistant</span
+          ><span class="nav-pi">Pi</span>
+        </button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note">
+        <span class="note-star" data-icon="sparkles"></span
+        ><strong>A little more headspace.</strong>
+        <p>Your classes, deadlines and next steps. All in one place.</p>
+        <button data-open-page="assistant">
+          Meet your assistant <span data-icon="arrow"></span>
+        </button>
+      </div>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Use dark theme"
+        aria-pressed="false"
+      >
+        <span id="theme-icon" data-icon="moon"></span
+        ><span id="theme-label">Dark mode</span
+        ><span class="theme-switch" aria-hidden="true"></span>
+      </button>
+      <div class="sidebar-profile">
+        <span class="profile-avatar">Y</span>
+        <div>
+          <strong>Your workspace</strong
+          ><small><span class="status-dot"></span> Local on this Mac</small>
+        </div>
+        <span data-icon="lock"></span>
+      </div>
+    </aside>
+    <div class="workspace-shell">
+      <header class="topbar">
+        <div class="breadcrumbs">
+          <span data-icon="book"></span><span>My workspace</span
+          ><span class="breadcrumb-slash">/</span
+          ><strong id="breadcrumb-page">Overview</strong>
+        </div>
+        <div class="topbar-actions">
+          <button id="command-open" class="command-trigger">
+            <span data-icon="search"></span><span>Jump to a page…</span
+            ><kbd>⌘ K</kbd></button
+          ><span class="timezone-pill"
+            ><span class="status-dot"></span> Europe/Paris</span
+          >
+        </div>
+      </header>
+      <main id="main-content" tabindex="-1">
+        <section id="dashboard" class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">YOUR PERSONAL ACADEMIC SPACE</p>
+              <h1>Overview<span class="heading-dot">.</span></h1>
+            </div>
+            <div class="heading-actions">
+              <span id="workspace-date" class="date-label"></span
+              ><button
+                id="dashboard-refresh"
+                class="icon-button"
+                aria-label="Refresh dashboard"
+                title="Refresh dashboard"
+              >
+                <span data-icon="refresh"></span>
+              </button>
+            </div>
+          </div>
+          <section class="welcome-banner" aria-labelledby="welcome-title">
+            <div class="welcome-copy">
+              <span class="hero-kicker"
+                ><span class="tiny-star">✦</span> A little clarity goes a long
+                way</span
+              >
+              <h2 id="welcome-title">
+                Less overwhelm.<br /><span>More possibility.</span>
+              </h2>
+              <p>
+                Your academic life, thoughtfully in one place.<br />See what’s
+                ahead. Make space for what matters.
+              </p>
+              <div class="hero-actions">
+                <button class="button-lime" data-scroll-target="study-planning">
+                  Make a study plan <span data-icon="arrow"></span></button
+                ><button class="hero-link" data-open-page="calendar">
+                  View calendar <span data-icon="arrowUp"></span>
+                </button>
+              </div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="orbit orbit-three"></div>
+              <span class="art-planet planet-lime"></span
+              ><span class="art-planet planet-pink"></span
+              ><span class="art-spark">✳</span><span class="art-star">✦</span>
+              <div class="art-note">
+                <span data-icon="leaf"></span><span>Room to grow.</span>
+              </div>
+              <span class="art-caption"
+                >A LITTLE STRUCTURE. A LOT OF POTENTIAL.</span
+              >
+            </div>
+          </section>
+          <div class="stats-grid" aria-label="Academic summary">
+            <article class="stat-card">
+              <span class="stat-icon tone-iris" data-icon="calendar"></span
+              ><span class="stat-label">On your schedule</span
+              ><strong id="stat-classes">—</strong
+              ><small>Classes & French lessons today</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon tone-peach" data-icon="check"></span
+              ><span class="stat-label">Coming due</span
+              ><strong id="stat-deadlines">—</strong
+              ><small>Incomplete deadlines · next 7 days</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon tone-blue" data-icon="cap"></span
+              ><span class="stat-label">Exam horizon</span
+              ><strong id="stat-exams">—</strong
+              ><small>Next 30 days & ongoing exams</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon tone-mint" data-icon="clock"></span
+              ><span class="stat-label">Suggested focus</span
+              ><strong id="stat-focus">—</strong
+              ><small id="stat-focus-caption"
+                >Proposed study time · not booked</small
+              >
+            </article>
+          </div>
+          <div class="data-status">
+            <p id="dashboard-updated" role="status">
+              Loading your local academic data…
+            </p>
+            <span class="local-badge"
+              ><span data-icon="lock"></span> Private by design</span
+            >
+          </div>
+          <p id="dashboard-error" role="alert"></p>
+          <p id="dashboard-calendar-status" role="status"></p>
+          <details class="policy-disclosure">
+            <summary>How your overview is calculated</summary>
+            <p id="dashboard-policy"></p>
+          </details>
+          <div id="dashboard-content" hidden>
+            <div class="overview-grid">
+              <section
+                class="panel today-panel"
+                aria-labelledby="dashboard-today-title"
+              >
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">ONE DAY AT A TIME</p>
+                    <h2 id="dashboard-today-title">Today, at a glance</h2>
+                  </div>
+                  <button class="text-button" data-open-page="calendar">
+                    Calendar <span data-icon="arrow"></span>
+                  </button>
+                </div>
+                <div id="dashboard-today"></div>
+              </section>
+              <section
+                class="panel upcoming-panel"
+                aria-labelledby="dashboard-upcoming-title"
+              >
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">A LITTLE LOOK AHEAD</p>
+                    <h2 id="dashboard-upcoming-title">On the horizon</h2>
+                  </div>
+                  <span class="heading-icon" data-icon="arrowUp"></span>
+                </div>
+                <div id="dashboard-upcoming"></div>
+              </section>
+            </div>
+            <section
+              class="panel attention-panel"
+              aria-labelledby="dashboard-attention-title"
+            >
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">NOTHING SLIPS THROUGH</p>
+                  <h2 id="dashboard-attention-title">
+                    Needs a little attention
+                  </h2>
+                </div>
+                <span class="heading-icon tone-peach" data-icon="alert"></span>
+              </div>
+              <p id="dashboard-attention-summary" class="muted"></p>
+              <div id="attention-empty" hidden></div>
+              <div id="dashboard-attention" class="dashboard-columns"></div>
+            </section>
+            <section
+              class="panel week-panel"
+              aria-labelledby="dashboard-week-title"
+            >
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">THE BIGGER PICTURE</p>
+                  <h2 id="dashboard-week-title">Your week, in perspective</h2>
+                </div>
+                <button class="text-button" data-open-page="calendar">
+                  Full calendar <span data-icon="arrow"></span>
+                </button>
+              </div>
+              <p id="dashboard-week-range" class="muted"></p>
+              <div id="dashboard-week" class="week-timetable"></div>
+              <details class="panel-disclosure">
+                <summary>Pending work & weekly conflicts</summary>
+                <div id="dashboard-week-pending"></div>
+                <div id="dashboard-week-conflicts"></div>
+              </details>
+            </section>
+          </div>
+          <section
+            id="study-planning"
+            class="panel planning-panel"
+            aria-labelledby="planning-title"
+          >
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">TURN FREE TIME INTO FOCUS TIME</p>
+                <h2 id="planning-title">
+                  A little room for progress<span class="heading-dot">.</span>
+                </h2>
+              </div>
+              <span class="badge badge-iris"
+                ><span data-icon="sparkles"></span> Smart planning</span
+              >
+            </div>
+            <p class="section-intro">
+              Real calendar gaps. Thoughtful suggestions. Always your
+              call—nothing is booked or changed.
+            </p>
+            <div class="planning-quick-actions">
+              <button id="planning-today" type="button">Today</button
+              ><button id="planning-tomorrow" type="button">Tomorrow</button
+              ><a class="text-button" href="#planning-customize"
+                >Customize <span data-icon="filter"></span
+              ></a>
+            </div>
+            <details id="planning-customize" class="planning-customize">
+              <summary>Customize this study preview</summary>
+              <form id="planning-form" class="record-form">
+                <label
+                  >Start date <input name="date" type="date" /><small
+                    >Leave blank for today in Paris</small
+                  ></label
+                >
+                <label
+                  >Planning horizon
+                  <select name="days">
+                    <option value="7">Next 7 days</option>
+                    <option value="1">One day</option>
+                    <option value="14">Next 14 days</option>
+                  </select></label
+                >
+                <label
+                  >Course or topic
+                  <input
+                    name="subject"
+                    maxlength="300"
+                    placeholder="e.g. Linear algebra"
+                  /><small>Optional · uses your saved work</small></label
+                >
+                <label
+                  >Total study budget
+                  <div class="input-unit">
+                    <input
+                      name="minutes"
+                      type="number"
+                      min="5"
+                      max="10080"
+                      step="1"
+                      placeholder="Optional"
+                    /><span>min</span>
+                  </div></label
+                >
+                <details class="wide advanced-preferences">
+                  <summary>Fine-tune study preferences</summary>
+                  <p class="muted">
+                    Temporary overrides only. Leave blank to use your local
+                    configuration.
+                  </p>
+                  <div class="planning-preferences">
+                    <label
+                      >Window start
+                      <input name="windowStart" type="time" step="60" /></label
+                    ><label
+                      >Window end
+                      <input
+                        name="windowEnd"
+                        maxlength="5"
+                        placeholder="20:00 or 24:00"
+                    /></label>
+                    <label
+                      >Daily limit (minutes)
+                      <input
+                        name="dailyLimitMinutes"
+                        type="number"
+                        min="0"
+                        max="720"
+                        step="1"
+                        placeholder="0 pauses study"
+                    /></label>
+                    <label
+                      >Minimum session (minutes)
+                      <input
+                        name="minSessionMinutes"
+                        type="number"
+                        min="5"
+                        max="120"
+                        step="1"
+                    /></label>
+                    <label
+                      >Maximum session (minutes)
+                      <input
+                        name="maxSessionMinutes"
+                        type="number"
+                        min="5"
+                        max="180"
+                        step="1"
+                    /></label>
+                    <label
+                      >Break (minutes)
+                      <input
+                        name="breakMinutes"
+                        type="number"
+                        min="0"
+                        max="60"
+                        step="1"
+                    /></label>
+                    <label
+                      >Event buffer (minutes)
+                      <input
+                        name="eventBufferMinutes"
+                        type="number"
+                        min="0"
+                        max="120"
+                        step="1"
+                    /></label>
+                    <label
+                      >Unknown-effort starter (minutes)
+                      <input
+                        name="starterMinutes"
+                        type="number"
+                        min="5"
+                        max="600"
+                        step="1"
+                    /></label>
+                  </div>
+                </details>
+                <div class="wide form-actions">
+                  <button
+                    id="planning-generate"
+                    class="button-primary"
+                    type="submit"
+                  >
+                    <span data-icon="sparkles"></span> Generate recommendations</button
+                  ><button type="reset" class="button-ghost">
+                    Use local defaults
+                  </button>
+                </div>
+              </form>
+            </details>
+            <p id="planning-updated" class="caption" role="status">
+              Finding room in your local calendar…
+            </p>
+            <p id="planning-error" role="alert"></p>
+            <div id="planning-result" hidden>
+              <div class="planning-summary">
+                <div class="planning-summary-copy">
+                  <span class="eyebrow">YOUR PLAN AT A GLANCE</span>
+                  <p id="planning-status" role="status"></p>
+                </div>
+                <div id="planning-coverage" class="coverage"></div>
+              </div>
+              <div id="planning-warnings" role="status"></div>
+              <ul id="planning-insights" class="insight-list"></ul>
+              <div class="dashboard-columns planning-results">
+                <section>
+                  <h3>
+                    Suggested sessions
+                    <span class="badge badge-neutral">Not reserved</span>
+                  </h3>
+                  <div id="planning-sessions"></div>
+                </section>
+                <section>
+                  <h3>Room in your calendar</h3>
+                  <p class="muted">
+                    Candidate gaps before allocating suggestions. Unrecorded
+                    personal commitments may still occupy them.
+                  </p>
+                  <div id="planning-free"></div>
+                </section>
+              </div>
+              <details class="panel-disclosure">
+                <summary>Workload & uncovered budgets</summary>
+                <div id="planning-workload" class="record-list"></div>
+              </details>
+              <details class="panel-disclosure">
+                <summary>Preferences, exclusions & planning notes</summary>
+                <p id="planning-policy"></p>
+                <ul id="planning-exclusions"></ul>
+                <ul id="planning-notes"></ul>
+              </details>
+            </div>
+          </section>
+        </section>
+        <section id="calendar" class="page" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">MAKE SPACE FOR WHAT MATTERS</p>
+              <h1>Your calendar<span class="heading-dot">.</span></h1>
+              <p class="page-description">
+                University classes and French lessons. One clear view.
+              </p>
+            </div>
+            <button id="refresh" class="button-primary">
+              <span data-icon="refresh"></span> Sync calendar
+            </button>
+          </div>
+          <div class="panel calendar-panel">
+            <div class="calendar-toolbar">
+              <div class="calendar-period">
+                <h2 id="calendar-range">Your timetable</h2>
+                <span class="caption"
+                  >Europe/Paris · university events are read-only</span
+                >
+              </div>
+              <div class="toolbar">
+                <div class="segmented-nav">
+                  <button id="previous" aria-label="Previous period">←</button
+                  ><button id="today">Today</button
+                  ><button id="next" aria-label="Next period">→</button>
+                </div>
+                <label class="compact-label"
+                  ><span class="sr-only">Date</span
+                  ><input id="date" type="date" required /></label
+                ><label class="compact-label"
+                  ><span class="sr-only">View</span
+                  ><select id="view">
+                    <option value="week">Week view</option>
+                    <option value="day">Day view</option>
+                  </select></label
+                >
+              </div>
+            </div>
+            <div class="calendar-legend">
+              <span><i class="legend-dot iris"></i>University</span
+              ><span><i class="legend-dot mint"></i>French lessons</span
+              ><span><i class="legend-dot peach"></i>Conflict</span
+              ><span class="calendar-shortcuts"
+                >← → to navigate · T for today</span
+              >
+            </div>
+            <p id="sync" class="caption" role="status"></p>
+            <p id="error" role="alert"></p>
+            <div id="conflicts" role="status"></div>
+            <div id="timetable"></div>
+          </div>
+        </section>
+        <section id="assignments" class="page" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">ONE THING AT A TIME</p>
+              <h1>Assignments<span class="heading-dot">.</span></h1>
+              <p class="page-description">
+                Small steps, clear deadlines, less mental clutter.
+              </p>
+            </div>
+            <button class="button-primary" data-new-record="assignments">
+              <span data-icon="plus"></span> New assignment
+            </button>
+          </div>
+          <div class="records-layout">
+            <div class="records-main">
+              <section class="panel records-filter-panel">
+                <div class="record-tabs" aria-label="Assignment status">
+                  <button data-record-status="" aria-pressed="true">
+                    All work</button
+                  ><button data-record-status="pending" aria-pressed="false">
+                    Pending</button
+                  ><button
+                    data-record-status="in_progress"
+                    aria-pressed="false"
+                  >
+                    In progress</button
+                  ><button data-record-status="completed" aria-pressed="false">
+                    Completed
+                  </button>
+                </div>
+                <form id="assignments-filters" class="filter-form">
+                  <div class="filter-search">
+                    <span data-icon="search"></span
+                    ><input
+                      name="query"
+                      maxlength="300"
+                      placeholder="Find an assignment…"
+                      aria-label="Search assignments"
+                    />
+                  </div>
+                  <label
+                    ><span class="sr-only">Course</span
+                    ><input
+                      name="course"
+                      maxlength="300"
+                      placeholder="Course" /></label
+                  ><label
+                    ><span class="sr-only">Status</span
+                    ><select name="status">
+                      <option value="">All statuses</option>
+                      <option value="pending">Pending</option>
+                      <option value="in_progress">In progress</option>
+                      <option value="completed">Completed</option>
+                    </select></label
+                  ><label
+                    ><span class="sr-only">Priority</span
+                    ><select name="priority">
+                      <option value="">Any priority</option>
+                      <option value="high">High</option>
+                      <option value="normal">Normal</option>
+                      <option value="low">Low</option>
+                    </select></label
+                  >
+                  <details class="wide advanced-filters">
+                    <summary>Dates & more filters</summary>
+                    <div class="filter-advanced">
+                      <label
+                        >Period
+                        <select name="period">
+                          <option value="">Any / custom dates</option>
+                          <option value="today">Today</option>
+                          <option value="this_week">This week</option>
+                          <option value="next_week">Next week</option>
+                          <option value="this_month">This month</option>
+                          <option value="next_month">Next month</option>
+                        </select></label
+                      ><label>From <input name="from" type="date" /></label
+                      ><label>Through <input name="to" type="date" /></label
+                      ><label
+                        >Deadline
+                        <select name="undated">
+                          <option value="">Any deadline</option>
+                          <option value="true">Unknown</option>
+                          <option value="false">Known</option>
+                        </select></label
+                      ><label class="check-label"
+                        ><input name="overdue" type="checkbox" /> Overdue
+                        only</label
+                      >
+                    </div>
+                  </details>
+                  <div class="wide filter-actions">
+                    <button type="submit" class="button-small">
+                      Apply filters</button
+                    ><button type="reset" class="button-ghost button-small">
+                      Reset
+                    </button>
+                  </div>
+                </form>
+              </section>
+              <div class="results-heading">
+                <h2>Your assignments</h2>
+                <span id="assignments-result-total" class="caption"
+                  >Loading local records…</span
+                >
+              </div>
+              <p
+                id="assignments-message"
+                class="success-message"
+                role="status"
+              ></p>
+              <p id="assignments-error" role="alert"></p>
+              <div id="assignments-list" class="record-list"></div>
+              <div class="pagination">
+                <button
+                  id="assignments-previous"
+                  aria-label="Previous assignment results"
+                >
+                  ← Previous</button
+                ><span id="assignments-count"></span
+                ><button id="assignments-next">Next →</button>
+              </div>
+            </div>
+            <aside
+              class="panel editor-panel"
+              aria-labelledby="assignments-editor-title"
+            >
+              <div class="editor-heading">
+                <span class="heading-icon tone-iris" data-icon="plus"></span>
+                <div>
+                  <h2 id="assignments-editor-title">New assignment</h2>
+                  <p>Get it out of your head.</p>
+                </div>
+              </div>
+              <form id="assignments-form" class="record-form">
+                <label class="wide"
+                  >Title
+                  <input
+                    name="title"
+                    required
+                    maxlength="300"
+                    placeholder="What are you working on?" /></label
+                ><label class="wide"
+                  >Course
+                  <input
+                    name="course"
+                    maxlength="300"
+                    placeholder="e.g. Probability" /></label
+                ><label class="wide"
+                  >Description
+                  <textarea
+                    name="description"
+                    maxlength="10000"
+                    rows="3"
+                    placeholder="Details, requirements, a note to future you…"
+                  ></textarea></label
+                ><label>Due date <input name="dueDate" type="date" /></label
+                ><label
+                  >Due time
+                  <input name="dueTime" type="time" step="60" /></label
+                ><label
+                  >Priority
+                  <select name="priority">
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                  </select></label
+                ><label
+                  >Status
+                  <select name="status">
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In progress</option>
+                    <option value="completed">Completed</option>
+                  </select></label
+                ><label class="wide"
+                  >Estimated effort
+                  <div class="input-unit">
+                    <input
+                      name="estimatedMinutes"
+                      type="number"
+                      min="1"
+                      max="1000000"
+                      step="1"
+                      placeholder="Optional"
+                    /><span>minutes</span>
+                  </div></label
+                >
+                <p class="form-note wide">
+                  <span data-icon="lock"></span> Leave unknown details blank.
+                  Nothing is guessed.
+                </p>
+                <div class="wide editor-actions">
+                  <button type="submit" class="button-primary">
+                    Save assignment <span data-icon="arrow"></span></button
+                  ><button
+                    type="button"
+                    id="assignments-new"
+                    class="button-ghost"
+                  >
+                    New / cancel edit
+                  </button>
+                </div>
+              </form>
+            </aside>
+          </div>
+        </section>
+        <section id="exams" class="page" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">FEEL A LITTLE MORE PREPARED</p>
+              <h1>Exams<span class="heading-dot">.</span></h1>
+              <p class="page-description">
+                Know what’s ahead. Give yourself room to get ready.
+              </p>
+            </div>
+            <button class="button-primary" data-new-record="exams">
+              <span data-icon="plus"></span> New exam
+            </button>
+          </div>
+          <div class="records-layout">
+            <div class="records-main">
+              <section class="panel records-filter-panel">
+                <div class="section-heading compact">
+                  <h2>Your exam horizon</h2>
+                  <span class="heading-icon tone-blue" data-icon="cap"></span>
+                </div>
+                <form id="exams-filters" class="filter-form">
+                  <div class="filter-search">
+                    <span data-icon="search"></span
+                    ><input
+                      name="query"
+                      maxlength="300"
+                      placeholder="Find an exam or topic…"
+                      aria-label="Search exams"
+                    />
+                  </div>
+                  <label
+                    ><span class="sr-only">Preparation</span
+                    ><select name="preparationStatus">
+                      <option value="">Any preparation status</option>
+                      <option value="not_started">Not started</option>
+                      <option value="in_progress">In progress</option>
+                      <option value="ready">Ready</option>
+                    </select></label
+                  >
+                  <details class="wide advanced-filters">
+                    <summary>Dates & more filters</summary>
+                    <div class="filter-advanced">
+                      <label
+                        >Period
+                        <select name="period">
+                          <option value="">Any / custom dates</option>
+                          <option value="today">Today</option>
+                          <option value="this_week">This week</option>
+                          <option value="next_week">Next week</option>
+                          <option value="this_month">This month</option>
+                          <option value="next_month">Next month</option>
+                        </select></label
+                      ><label>From <input name="from" type="date" /></label
+                      ><label>Through <input name="to" type="date" /></label
+                      ><label
+                        >Date
+                        <select name="undated">
+                          <option value="">Any date</option>
+                          <option value="true">Unknown</option>
+                          <option value="false">Known</option>
+                        </select></label
+                      >
+                    </div>
+                  </details>
+                  <div class="wide filter-actions">
+                    <button type="submit" class="button-small">
+                      Apply filters</button
+                    ><button type="reset" class="button-ghost button-small">
+                      Reset
+                    </button>
+                  </div>
+                </form>
+              </section>
+              <div class="results-heading">
+                <h2>Keep the bigger picture</h2>
+                <span id="exams-result-total" class="caption"
+                  >Loading local records…</span
+                >
+              </div>
+              <p id="exams-message" class="success-message" role="status"></p>
+              <p id="exams-error" role="alert"></p>
+              <div id="exams-list" class="record-list"></div>
+              <div class="pagination">
+                <button id="exams-previous">← Previous</button
+                ><span id="exams-count"></span
+                ><button id="exams-next">Next →</button>
+              </div>
+            </div>
+            <aside
+              class="panel editor-panel"
+              aria-labelledby="exams-editor-title"
+            >
+              <div class="editor-heading">
+                <span class="heading-icon tone-blue" data-icon="cap"></span>
+                <div>
+                  <h2 id="exams-editor-title">New exam</h2>
+                  <p>A clearer path to prepared.</p>
+                </div>
+              </div>
+              <form id="exams-form" class="record-form">
+                <label class="wide"
+                  >Subject
+                  <input
+                    name="subject"
+                    required
+                    maxlength="300"
+                    placeholder="e.g. Linear algebra" /></label
+                ><label>Date <input name="examDate" type="date" /></label
+                ><label
+                  >Start time
+                  <input name="startTime" type="time" step="60" /></label
+                ><label
+                  >Duration (minutes)
+                  <input
+                    name="durationMinutes"
+                    type="number"
+                    min="1"
+                    max="1000000"
+                    step="1"
+                    placeholder="Optional" /></label
+                ><label
+                  >Preparation
+                  <select name="preparationStatus">
+                    <option value="not_started">Not started</option>
+                    <option value="in_progress">In progress</option>
+                    <option value="ready">Ready</option>
+                  </select></label
+                ><label class="wide"
+                  >Location
+                  <input
+                    name="location"
+                    maxlength="500"
+                    placeholder="Room, building, or online" /></label
+                ><label class="wide"
+                  >Topics to revise
+                  <textarea
+                    name="topics"
+                    rows="4"
+                    maxlength="60000"
+                    placeholder="One topic per line"
+                  ></textarea>
+                </label>
+                <p class="form-note wide">
+                  <span data-icon="lock"></span> Unknown information stays
+                  unknown.
+                </p>
+                <div class="wide editor-actions">
+                  <button type="submit" class="button-primary">
+                    Save exam <span data-icon="arrow"></span></button
+                  ><button type="button" id="exams-new" class="button-ghost">
+                    New / cancel edit
+                  </button>
+                </div>
+              </form>
+            </aside>
+          </div>
+        </section>
+        <section id="placeholder" class="page assistant-page" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">A LITTLE HELP GOES A LONG WAY</p>
+              <h1 id="page-title">
+                Your academic copilot<span class="heading-dot">.</span>
+              </h1>
+            </div>
+            <span class="badge badge-iris">Powered by Pi</span>
+          </div>
+          <section class="panel chat-panel" aria-label="Academic AI chat">
+            <div class="chat-toolbar">
+              <div>
+                <span class="chat-state-dot" id="chat-state-dot"></span
+                ><strong id="chat-connection" role="status"
+                  >Ready when you are</strong
+                ><small id="chat-model"
+                  >Pi selects your configured model when you send</small
+                >
+              </div>
+              <button id="chat-new" class="button-ghost">
+                <span data-icon="plus"></span> New chat
+              </button>
+            </div>
+            <div
+              id="chat-transcript"
+              class="chat-transcript"
+              role="log"
+              aria-label="Conversation"
+              aria-relevant="additions"
+            >
+              <div id="chat-welcome" class="chat-welcome">
+                <div class="assistant-orb" aria-hidden="true">
+                  <span data-icon="sparkles"></span>
+                </div>
+                <h2>Ask what matters.<br />We’ll look it up.</h2>
+                <p>
+                  Your real classes, assignments, exams and study plans.<br />No
+                  conversational guesswork in place of your data.
+                </p>
+              </div>
+            </div>
+            <details id="chat-activity" class="chat-activity" hidden>
+              <summary id="chat-activity-title">Tool activity</summary>
+              <div id="chat-tool-list"></div>
+            </details>
+            <p id="chat-error" role="alert"></p>
+            <form id="chat-form" class="chat-composer">
+              <label class="sr-only" for="chat-input">Message Campus</label
+              ><textarea
+                id="chat-input"
+                rows="3"
+                maxlength="8000"
+                placeholder="What should I focus on today?"
+                required
+              ></textarea>
+              <div class="chat-composer-actions">
+                <span>Enter to send · Shift + Enter for a new line</span>
+                <div>
+                  <button
+                    id="chat-stop"
+                    type="button"
+                    class="button-ghost"
+                    hidden
+                  >
+                    Stop reply</button
+                  ><button id="chat-send" type="submit" class="button-primary">
+                    Send to Pi <span data-icon="arrow"></span>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <p class="chat-privacy">
+              <span data-icon="lock"></span> Only sending a message starts an AI
+              request. Your chosen provider receives your message and queried
+              academic data. Credentials stay on the server. Every academic
+              change requires your approval.
+            </p>
+          </section>
+          <div class="assistant-prompts">
+            <button data-chat-prompt="What should I focus on today?">
+              <span data-icon="sparkles"></span><strong>Find my focus</strong
+              ><span>What should I focus on today?</span
+              ><span class="prompt-arrow" data-icon="arrowUp"></span></button
+            ><button data-chat-prompt="What assignments are due this week?">
+              <span data-icon="check"></span><strong>Stay a step ahead</strong
+              ><span>What’s due this week?</span
+              ><span class="prompt-arrow" data-icon="arrowUp"></span></button
+            ><button
+              data-chat-prompt="Do I have time to study linear algebra tomorrow?"
+            >
+              <span data-icon="clock"></span><strong>Make a little room</strong
+              ><span>Do I have time to study tomorrow?</span
+              ><span class="prompt-arrow" data-icon="arrowUp"></span>
+            </button>
+          </div>
+          <details class="chat-help">
+            <summary>Pi login, privacy & conversation storage</summary>
+            <p>
+              Uses your existing Pi login and configured model. If needed, run
+              <code>npx --no-install pi --no-extensions</code> in this project.
+              For an OpenAI model, use <code>/login openai</code> and choose
+              <strong>Sign in with ChatGPT</strong>, then start a new chat here.
+              The separate legacy <code>openai-codex</code> login does not
+              authenticate <code>openai</code> models. To keep a legacy login,
+              use <code>/model</code> to explicitly choose a supported
+              <code>openai-codex</code> model instead.
+            </p>
+            <div class="assistant-terminal">
+              <span data-icon="terminal"></span><code>npx --no-install pi --no-extensions</code
+              ><button
+                id="copy-pi"
+                class="icon-button"
+                aria-label="Copy Pi launch command"
+              >
+                <span data-icon="copy"></span>
+              </button>
+            </div>
+            <p>
+              Conversation is kept in server memory while the application runs
+              and expires after inactivity. Reloading this tab restores its
+              current chat; restarting the server starts fresh. Academic records
+              remain in SQLite. Browser chat only has academic tools—no shell,
+              files or arbitrary extensions. Stopping a reply does not undo
+              changes you already approved.
+            </p>
+          </details>
+        </section>
+        <footer class="workspace-footer">
+          <span
+            >campus. <span class="footer-divider">/</span> Academic
+            Manager</span
+          ><span
+            >Made for a clearer head.
+            <span class="status-dot"></span> Local-first, always.</span
+          >
+        </footer>
+      </main>
+    </div>
+    <button
+      id="chat-launcher"
+      class="chat-launcher"
+      aria-label="Open academic AI chat"
+    >
+      <span data-icon="sparkles"></span
+      ><span id="chat-launcher-label">Ask Campus</span>
+    </button>
+    <dialog
+      id="chat-approval"
+      class="chat-approval"
+      aria-labelledby="chat-approval-title"
+      aria-describedby="chat-approval-note"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR DATA. YOUR DECISION.</p>
+          <h2 id="chat-approval-title">Approve academic change?</h2>
+        </div>
+        <span class="heading-icon tone-peach" data-icon="alert"></span>
+      </div>
+      <p id="chat-approval-note" class="muted">
+        Review this exact tool call before it changes persistent academic data.
+        Approval is one-time and expires automatically.
+      </p>
+      <pre id="chat-approval-preview"></pre>
+      <p id="chat-approval-expiry" class="caption"></p>
+      <p id="chat-approval-error" role="alert"></p>
+      <div class="form-actions">
+        <button id="chat-decline" class="button-ghost" type="button">
+          Decline</button
+        ><button id="chat-approve" class="button-primary" type="button">
+          Approve this change
+        </button>
+      </div>
+    </dialog>
+    <dialog id="edit-dialog" class="edit-dialog">
+      <form id="edit-form">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">JUST THIS ONE</p>
+            <h2>Modify French lesson</h2>
+          </div>
+          <button
+            type="button"
+            id="edit-close"
+            class="icon-button"
+            aria-label="Close occurrence editor"
+          >
+            <span data-icon="close"></span>
+          </button>
+        </div>
+        <p class="muted">
+          Use ISO timestamps with offsets (+01:00 in winter, +02:00 in summer).
+          Displayed in Europe/Paris.
+        </p>
+        <label>Start <input id="edit-start" type="text" required /></label
+        ><label>End <input id="edit-end" type="text" required /></label
+        ><label>Location <input id="edit-location" maxlength="500" /></label
+        ><label class="check-label"
+          ><input id="edit-cancelled" type="checkbox" /> Cancel this
+          occurrence</label
+        ><label class="check-label"
+          ><input id="edit-confirm" type="checkbox" required /> I confirm this
+          single-occurrence change</label
+        >
+        <p id="edit-error" role="alert"></p>
+        <button type="submit" class="button-primary">
+          Save occurrence <span data-icon="arrow"></span>
+        </button>
+      </form>
+    </dialog>
+    <dialog
+      id="command-dialog"
+      class="command-dialog"
+      aria-labelledby="command-title"
+    >
+      <h2 id="command-title" class="sr-only">Jump to a page or action</h2>
+      <div class="command-search">
+        <span data-icon="search"></span
+        ><input
+          id="command-search"
+          type="search"
+          placeholder="Where would you like to go?"
+          aria-label="Search pages and actions"
+          autocomplete="off"
+          autofocus
+        /><button
+          id="command-close"
+          class="icon-button"
+          aria-label="Close command palette"
+        >
+          <kbd>esc</kbd>
+        </button>
+      </div>
+      <p class="command-caption">PAGES & QUICK ACTIONS</p>
+      <div id="command-results"></div>
+      <div class="command-footer">
+        <span>↑ ↓ to move</span><span>↵ to open</span
+        ><span>Local navigation. No AI request.</span>
+      </div>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+  </body>
+</html>
